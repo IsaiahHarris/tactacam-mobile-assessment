@@ -6,7 +6,7 @@ import Search from './src/components/Search/Search.js';
 import {View} from 'react-native';
 const RouteHandler = () => {
   const [currentQuery, setCurrentQuery] = useState('random');
-  const [currentPhotoClicked, setCurrentPhotoClicked] = useState({});
+  const [currentPhotoClicked, setCurrentPhotoClicked] = useState(null);
   return (
     <View>
       {!currentPhotoClicked && <Search triggerSearch={setCurrentQuery} />}

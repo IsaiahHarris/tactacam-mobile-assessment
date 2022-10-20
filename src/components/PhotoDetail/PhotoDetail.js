@@ -16,6 +16,29 @@ import {
 
 const PhotoDetail = ({photo, clickBack}) => {
   const urls = photo && photo.urls;
+  async function hasAndroidPermission() {
+    const permission = PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE;
+
+    const hasPermission = await PermissionsAndroid.check(permission);
+    if (hasPermission) {
+      return true;
+    }
+
+    const status = await PermissionsAndroid.request(permission);
+    return status === 'granted';
+  }
+
+  async function savePicture() {
+    if (Platform.OS === 'android' && !(await hasAndroidPermission())) {
+      return;
+    }
+
+    CameraRoll.save(urls.full || urls.thumb).then(data => {
+      if (data) {
+        console.log('data', data);
+      }
+    });
+  }
   return (
     <>
       <View style={styles.photoDetailContainer}>
@@ -26,10 +49,7 @@ const PhotoDetail = ({photo, clickBack}) => {
           <Link to="/" style={styles.backButton}>
             <TouchableOpacity
               onPress={() => {
-                CameraRoll.save(urls.full || urls.thumb).then(data => {
-                  if (data) {
-                  }
-                });
+                savePicture();
               }}>
               <Text style={styles.backButtonText}>Save Image</Text>
             </TouchableOpacity>
