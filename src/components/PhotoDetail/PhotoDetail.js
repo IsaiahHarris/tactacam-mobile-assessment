@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-native';
 import {CameraRoll} from '@react-native-camera-roll/camera-roll';
+import Toast from 'react-native-toast-message';
 
 import {
   SafeAreaView,
@@ -14,7 +15,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-const PhotoDetail = ({photo, clickBack}) => {
+const PhotoDetail = ({photo, clickBack, query}) => {
   const urls = photo && photo.urls;
   async function hasAndroidPermission() {
     const permission = PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE;
@@ -32,13 +33,21 @@ const PhotoDetail = ({photo, clickBack}) => {
     if (Platform.OS === 'android' && !(await hasAndroidPermission())) {
       return;
     }
-
     CameraRoll.save(urls.full || urls.thumb).then(data => {
       if (data) {
-        console.log('data', data);
+        showToast();
       }
     });
   }
+
+  const showToast = () => {
+    Toast.show({
+      type: 'success',
+      text1: 'Success!',
+      text2: `Your ${query.toLowerCase()} image has been saved successfully`,
+    });
+  };
+
   return (
     <>
       <View style={styles.photoDetailContainer}>
@@ -46,7 +55,7 @@ const PhotoDetail = ({photo, clickBack}) => {
           <Link to="/" style={styles.backButton} onPress={clickBack}>
             <Text style={styles.backButtonText}>Back Home</Text>
           </Link>
-          <Link to="/" style={styles.backButton}>
+          <Link style={styles.backButton}>
             <TouchableOpacity
               onPress={() => {
                 savePicture();

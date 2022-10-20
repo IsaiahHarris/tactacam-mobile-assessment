@@ -26,6 +26,7 @@ const RouteHandler = () => {
               <PhotoDetail
                 clickBack={() => setCurrentPhotoClicked('')}
                 photo={currentPhotoClicked}
+                query={currentQuery || 'random'}
               />
             }></Route>
         </Routes>
