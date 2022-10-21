@@ -1,6 +1,6 @@
 # Tactacam Mobile Assignment
 
-This is the mobile assignment for Tactacam by Isaiah Harris.
+This is the mobile assignment for Tactacam by Isaiah Harris. Please contact me at (808) 778-3166 if you have any questions.
 
 ## Steps to run locally
 
