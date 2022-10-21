@@ -18,7 +18,7 @@ Installs necessary packages.
 
 ### `pod install`
 
-You are now able to run the project on an xcode simulator or a physical ios device.
+You are now able to run the project on an xcode simulator with `npx react-native run-ios`, or on a physical ios device.
 
 ### Demo Media
 
