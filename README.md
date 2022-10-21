@@ -12,7 +12,7 @@ Installs necessary packages.
 
 ### `npm start`
 
-### ios
+### Steps for iOS
 
 ### `cd ios`
 
