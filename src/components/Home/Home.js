@@ -40,7 +40,6 @@ const Home = ({query, clickPhoto}) => {
   const [params, setParams] = useState({});
   const [error, setError] = useState('');
   useEffect(() => {
-    console.log('qyering');
     getPhotos(1, true);
   }, [query, params.color, params.orientation]);
 
@@ -52,7 +51,6 @@ const Home = ({query, clickPhoto}) => {
       `https://api.unsplash.com/search/photos?page=${page}&per_page=20&query=${query}${colorParam}${orientationParam}&client_id=${CLIENT_ID}`,
     )
       .then(response => {
-        console.log(response.status);
         if (response.status === 403) {
           setError(
             'Too many requests, developer mode only allows for 50 requests per hour',
@@ -122,7 +120,6 @@ const Home = ({query, clickPhoto}) => {
           renderItem={renderItem}
           keyExtractor={item => item.id}
           onEndReached={() => {
-            console.log('next');
             getPhotos(page + 1, false);
             setPage(page => page + 1);
           }}

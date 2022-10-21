@@ -23,7 +23,6 @@ const Search = ({triggerSearch}) => {
       <TouchableOpacity style={styles.searchButton}>
         <Button
           onPress={() => {
-            console.log('hi');
             triggerSearch(searchValue);
           }}
           style={styles.searchButton}
